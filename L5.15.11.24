@@ -1,0 +1,72 @@
+@startuml
+skinparam defaultTextAlignment center
+skinparam linetype ortho
+
+title Платформа для онлайн-обучения детей
+
+package "Основные компоненты" {
+  component "C1. Уроки" as C1
+  component "C2. Задания" as C2
+  component "C3. Видеоуроки" as C3
+  component "C4. Прогресс" as C4
+  component "C5. Тесты" as C5
+  component "C6. Интерактивные задания" as C6
+  component "C7. Отчеты" as C7
+}
+
+package "Учебный процесс" {
+  component "P1. Начало урока" as P1
+  component "P2. Изучение материала" as P2
+  component "P3. Выполнение задания" as P3
+  component "P4. Проверка задания" as P4
+  component "P5. Отображение результата" as P5
+  component "P6. Повторение задания" as P6
+  component "P7. Завершение урока" as P7
+}
+
+package "Роли" {
+  component "A1. Ученик" as A1
+  component "A2. Учитель" as A2
+  component "A3. Родитель" as A3
+  component "A4. Система проверки" as A4
+}
+
+C1 --> C2 : Включает
+C2 --> C3 : Включает
+C2 --> C6 : Включает
+C4 --> C5 : Включает
+C4 --> C7 : Включает
+
+P1 --> P2 : Следующий шаг
+P2 --> P3 : Следующий шаг
+P3 --> P4 : Следующий шаг
+P4 --> P5 : Следующий шаг
+P5 --> P6 : Если ошибка
+P5 --> P7 : Если успешно
+
+A1 --> P1 : Начинает урок
+A2 --> P4 : Проверяет задание
+A3 --> C7 : Получает отчет
+A4 --> P4 : Автоматическая проверка
+
+note right of C1
+  Недостаточный учет прогресса
+end note
+
+note right of C2
+  Данные аккуратного контроля
+end note
+
+note right of C4
+  Автоматическая проверка заданий
+end note
+
+note right of P5
+  Отображение результата (успешно/ошибка)
+end note
+
+note right of A4
+  Система проверки заданий
+end note
+
+@enduml
