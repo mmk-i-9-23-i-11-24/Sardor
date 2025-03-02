@@ -1,0 +1,21 @@
+@startuml
+actor "Ученик" as Student
+participant "Браузер" as Browser
+participant "Балансировщик нагрузки" as LoadBalancer
+participant "Сервер" as Server
+
+Student -> Browser: Запрос на доступ к курсу
+Browser -> LoadBalancer: Передача запроса
+LoadBalancer -> Server: Распределение запроса
+Server -> LoadBalancer: Ответ с данными курса
+LoadBalancer -> Browser: Передача ответа
+Browser -> Student: Отображение курса
+
+Student -> Browser: Запрос на выполнение задания
+Browser -> LoadBalancer: Передача запроса
+LoadBalancer -> Server: Распределение запроса
+Server -> LoadBalancer: Ответ с результатами задания
+LoadBalancer -> Browser: Передача ответа
+Browser -> Student: Отображение результатов
+
+@enduml
