@@ -1,0 +1,26 @@
+
+@startuml
+left to right direction
+
+actor "Администратор" as Admin
+actor "Менеджер по продажам" as SalesManager
+actor "Система" as System
+
+rectangle "Платформа онлайн-обучения" {
+    usecase "Создание клиента" as UC1
+    usecase "Управление продажами" as UC2
+    usecase "Отправка коммерческих предложений" as UC3
+    usecase "Создание задач" as UC4
+    usecase "Формирование отчетов о продажах" as UC5
+
+    Admin --> UC1
+    Admin --> UC4
+    SalesManager --> UC2
+    SalesManager --> UC3
+    SalesManager --> UC5
+    UC2 --> System : Запрос данных
+    UC3 --> System : Отправка данных
+    UC5 --> System : Получение данных
+}
+
+@enduml
