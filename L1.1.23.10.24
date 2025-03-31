@@ -1,0 +1,38 @@
+
+@startuml Платформа_для_онлайн-обучения_детей
+
+skinparam monochrome true
+skinparam defaultFontName Arial
+skinparam titleFontSize 16
+left to right direction
+
+title Платформа для онлайн-обучения детей
+
+actor Ученик as student
+actor Учитель as teacher
+database БазаДанных as db
+
+student --> (Регистрация)
+note right of student
+  - Ввод email/пароля
+  - Выбор курса
+end note
+
+(Регистрация) --> db : Сохранить данные
+
+student --> (Выполнение заданий)
+(Выполнение заданий) --> db : Загрузить материалы
+(Выполнение заданий) --> teacher : Отправить на проверку
+
+student --> (Викторины)
+(Викторины) --> db : Получить вопросы
+(Викторины) --> db : Записать результат
+
+student --> (Прогресс)
+(Прогресс) --> db : Анализ статистики
+(Прогресс) --> teacher : Сформировать отчёт
+
+student <--> (Общение с учителем)
+(Общение с учителем) <--> teacher : Чат/Видеозвонок
+
+@enduml
